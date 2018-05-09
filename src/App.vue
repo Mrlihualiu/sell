@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <v-header></v-header>  
+    <v-header></v-header>
 
     <div class="tab">
-      <div class="tab-item"> 
+      <div class="tab-item">
           <router-link to="/goods">商品</router-link>
       </div>
       <div class="tab-item">
@@ -16,7 +16,7 @@
 
     <div class="content">
       <!-- 路由出口 -->
-      <router-view></router-view> 
+      <router-view></router-view>
     </div>
   </div>
 </template>
@@ -25,12 +25,22 @@
   import header from './components/header/header.vue'
   import Vue from 'vue'
   import router from './router'
+  import VueResource from 'vue-resource'
+
+  Vue.use(VueResource)
+
+  const ERR_OK = 0
 
   export default {
     data(){
       return{
         seller: {}
       }
+    },
+    created: {
+      this.$http.get('/api/seller').then((response) => {
+        console.log(response)
+      });
     },
     components: {
       'v-header':header,
