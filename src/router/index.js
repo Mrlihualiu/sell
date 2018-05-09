@@ -6,7 +6,7 @@ import seller from '@/components/seller/seller'
 import ratings from '@/components/ratings/ratings'
 
 Vue.use(Router)
-
+    
 // 2.定义路由 映射
 const routes = [
   { path: '/', redirect: 'goods'}, 
