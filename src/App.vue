@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <v-header></v-header>
+    <v-header :seller="seller"></v-header>
 
     <div class="tab">
       <div class="tab-item">
@@ -25,25 +25,26 @@
   import header from './components/header/header.vue'
   import Vue from 'vue'
   import router from './router'
-  import VueResource from 'vue-resource'
-
-  Vue.use(VueResource)
 
   const ERR_OK = 0
 
   export default {
-    data(){
+    data:function(){
       return{
         seller: {}
       }
     },
-    created: {
+    created: function(){
       this.$http.get('/api/seller').then((response) => {
-        console.log(response)
+        console.log(response.body)
+
+        if(response.body.erron === ERR_OK){
+        	this.seller = response.body.data
+        }
       });
     },
     components: {
-      'v-header':header,
+      'v-header': header
     }
   }
 
@@ -58,9 +59,7 @@
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 .tab{
   display: flex;
@@ -70,15 +69,14 @@
 }
 .tab-item{
   width: 33.3333%;
-  font-size: 18px;
+  font-size: 14px;
   text-align: center;
 }
 .tab-item a{
-  color: #4ABCCD;
+  color: #4d555d;
   display: block;
 }
 .tab-item a.router-link-active{
-  color:#C53535;
-  background-color: #D8E0DD;
+  color: #f01414;
 }
 </style>
