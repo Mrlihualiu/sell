@@ -17,7 +17,7 @@
 					<span class="text">{{seller.supports[0].description}}</span>
 				</div>
 			</div>
-			<div v-if="seller.supports" class="support-count">
+			<div v-if="seller.supports" class="support-count" @click="showDetail">
 				<span class="count">{{seller.supports.length}}个</span>
 				<i class=""></i>
 			</div>
@@ -30,11 +30,17 @@
 		<div class="background">
 			<img :src="seller.avatar" alt="">
 		</div>
+		<div class="detail" v-show="detailShow" @click="hideDetail"></div>
 	</div>
 </template>
 
 <script type="text/ecmascript-6">
 	export default{
+		data: function(){
+			return {
+				detailShow: false
+			}
+		},
 		props: {
 			seller:{
 				type: Object
@@ -42,9 +48,18 @@
 		},
 		created: function(){
 			this.classMap = ['decrease','discount','special','invoice','guarantee'];
+		},
+		methods: {
+			showDetail:function(){
+				this.detailShow = true;
+			},
+			hideDetail:function(){
+				this.detailShow = false;
+			}
 		}
 	}
 </script>
+
 <style lang="scss">
 	@import "../../common/scss/header";
 </style>
