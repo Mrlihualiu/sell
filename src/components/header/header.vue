@@ -30,7 +30,16 @@
 		<div class="background">
 			<img :src="seller.avatar" alt="">
 		</div>
-		<div class="detail" v-show="detailShow" @click="hideDetail"></div>
+		<div class="detail" v-show="detailShow" @click="hideDetail">
+			<div class="detail-wrapper clearfix">
+				<div class="detail-main">
+					<h1 class="name">{{seller.name}}</h1>
+				</div>
+			</div>
+			<div class="detail-close">
+				<span>关闭</span>
+			</div>
+		</div>
 	</div>
 </template>
 
